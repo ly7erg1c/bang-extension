@@ -47,15 +47,47 @@ function renderBangs(bangsToRender) {
   
   bangsToRender.forEach(bang => {
     const row = document.createElement('tr');
-    row.innerHTML = `
-      <td class="trigger">!${bang.trigger}</td>
-      <td>${bang.description}</td>
-      <td class="url" title="${bang.url}">${bang.url}</td>
-      <td class="actions">
-        <button class="btn btn-small btn-edit" data-trigger="${bang.trigger}">Edit</button>
-        <button class="btn btn-small btn-delete" data-trigger="${bang.trigger}">Delete</button>
-      </td>
-    `;
+    
+    // Create trigger cell
+    const triggerCell = document.createElement('td');
+    triggerCell.className = 'trigger';
+    triggerCell.textContent = '!' + bang.trigger;
+    
+    // Create description cell
+    const descCell = document.createElement('td');
+    descCell.textContent = bang.description;
+    
+    // Create URL cell
+    const urlCell = document.createElement('td');
+    urlCell.className = 'url';
+    urlCell.title = bang.url;
+    urlCell.textContent = bang.url;
+    
+    // Create actions cell
+    const actionsCell = document.createElement('td');
+    actionsCell.className = 'actions';
+    
+    // Create edit button
+    const editBtn = document.createElement('button');
+    editBtn.className = 'btn btn-small btn-edit';
+    editBtn.dataset.trigger = bang.trigger;
+    editBtn.textContent = 'Edit';
+    
+    // Create delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'btn btn-small btn-delete';
+    deleteBtn.dataset.trigger = bang.trigger;
+    deleteBtn.textContent = 'Delete';
+    
+    actionsCell.appendChild(editBtn);
+    actionsCell.appendChild(deleteBtn);
+    
+    // Append all cells to row
+    row.appendChild(triggerCell);
+    row.appendChild(descCell);
+    row.appendChild(urlCell);
+    row.appendChild(actionsCell);
+    
     bangsTableBody.appendChild(row);
   });
   
