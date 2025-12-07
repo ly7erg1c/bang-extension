@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Bangs - Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔍 Custom Bangs</h1>
+      <p class="subtitle">Manage your custom bang shortcuts</p>
+    </header>
+
+    <div class="actions-bar">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search bangs..." />
+      </div>
+      <div class="action-buttons">
+        <button id="addBangBtn" class="btn btn-primary">+ Add Bang</button>
+        <button id="importBtn" class="btn btn-secondary">Import JSON</button>
+        <button id="exportBtn" class="btn btn-secondary">Export JSON</button>
+        <button id="resetBtn" class="btn btn-danger">Reset to Defaults</button>
+      </div>
+    </div>
+
+    <!-- Add/Edit Bang Form (Hidden by default) -->
+    <div id="bangFormContainer" class="form-container" style="display: none;">
+      <h2 id="formTitle">Add New Bang</h2>
+      <form id="bangForm">
+        <div class="form-group">
+          <label for="triggerInput">Trigger (without !)</label>
+          <input type="text" id="triggerInput" required placeholder="e.g., g" />
+          <small>This is the shortcut you'll type after !</small>
+        </div>
+        <div class="form-group">
+          <label for="urlInput">URL Template</label>
+          <input type="text" id="urlInput" required placeholder="e.g., https://google.com/search?q={{{s}}}" />
+          <small>Use {{{s}}} as placeholder for search terms</small>
+        </div>
+        <div class="form-group">
+          <label for="descriptionInput">Description</label>
+          <input type="text" id="descriptionInput" required placeholder="e.g., Google Search" />
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save Bang</button>
+          <button type="button" id="cancelBtn" class="btn btn-secondary">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Bangs Table -->
+    <div class="table-container">
+      <table id="bangsTable">
+        <thead>
+          <tr>
+            <th>Trigger</th>
+            <th>Description</th>
+            <th>URL Template</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="bangsTableBody">
+          <!-- Populated by JavaScript -->
+        </tbody>
+      </table>
+      <div id="emptyState" style="display: none;">
+        <p>No bangs found. Add your first bang!</p>
+      </div>
+    </div>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="importFileInput" accept=".json" style="display: none;" />
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
